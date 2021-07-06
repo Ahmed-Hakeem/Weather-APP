@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>travel app</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,900;1,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="wrapper">
+      <img src="../media/Sun.png" class="container" />
+      <div class="container" id="container">
+        <div class="holder">
+          <label for="city" class="title">Enter cityName here</label>
+          <input type="text" id="city" placeholder="enter cityName code here" />
+        </div>
+        <div id="dateContainer">
+          <label for="travel-start"> departing from </label>
+          <input type="date" id="travel-start" name="start-date" required />
+          <label for="travel-end"> departing to </label>
+          <input type="date" id="travel-end" name="end-date" required />
+        </div>
+        <div class="holder">
+          <label for="feelings" class="title">How are you feeling today?</label>
+          <textarea
+            id="feelings"
+            placeholder="Enter your feelings here"
+          ></textarea>
+        </div>
+        <div class="holder">
+          <button id="generate" type="submit">Generate</button>
+        </div>
+      </div>
+      <div class="spinHide" id="spinner"></div>
+      <div id="alldata">
+        <div id="image">
+          <img id="countryImg" src="../media/Moon.png" />
+        </div>
+        <div id="data" class="catch">
+          <div id="weatherGroup">
+            <div id="iconContainer">
+              <img id="apiIcon" src="../media/snow.png" />
+              <div id="description"></div>
+            </div>
+            <div id="tempContainer">
+              <div id="temp"></div>
+            </div>
+          </div>
+          <div id="dataGroup">
+            <div class="align">
+              <img class="icons" src="../media/calendar.png" />
+              <div id="date"></div>
+            </div>
+            <div class="align">
+              <img class="icons" src="../media/location.png" />
+              <div id="location"></div>
+            </div>
+            <div class="align">
+              <img class="icons" src="../media/user.png" />
+              <div id="population"></div>
+            </div>
+
+            <div class="align">
+              <img class="icons" src="../media/emoji.png" />
+              <div id="content"></div>
+            </div>
+            <div class="align">
+              <img class="icons" src="../media/flight.png" />
+              <div id="flight"></div>
+            </div>
+          </div>
+        </div>
+        <img id="right-arrow" src="../media/right-arrow.png" />
+        <img id="left-arrow" src="../media/left-arrow.png" />
+        <div id="weather-forecast">
+          <div id="day-weather0" class="day-weathers">
+            <img
+              id="image0"
+              class="images"
+              src="https://www.weatherbit.io/static/img/icons/r01d.png"
+            />
+            <div id="description0" class="descriptions"></div>
+            <div id="temprature0" class="tempratures">
+              20
+              <div id="min-temp0" class="min-temps"></div>
+              <div id="max-temp0" class="max-temps"></div>
+            </div>
+            <div id="date0" calss="dates"></div>
+          </div>
+          <div id="day-weather1" class="day-weathers">
+            <img
+              id="image1"
+              class="images"
+              src="https://www.weatherbit.io/static/img/icons/r01d.png"
+            />
+            <div id="description1" class="descriptions"></div>
+            <div id="temprature1" class="tempratures">
+              20
+              <div id="min-temp1" class="min-temps"></div>
+              <div id="max-temp1" class="max-temps"></div>
+            </div>
+            <div id="date1" calss="dates"></div>
+          </div>
+          <div id="day-weather2" class="day-weathers">
+            <img
+              id="image2"
+              class="images"
+              src="https://www.weatherbit.io/static/img/icons/r01d.png"
+            />
+            <div id="description2" class="descriptions"></div>
+            <div id="temprature2" class="tempratures">
+              20
+              <div id="min-temp2" class="min-temps"></div>
+              <div id="max-temp2" class="max-temps"></div>
+            </div>
+            <div id="date2" calss="dates"></div>
+          </div>
+          <div id="day-weather3" class="day-weathers">
+            <img
+              id="image3"
+              class="images"
+              src="https://www.weatherbit.io/static/img/icons/r01d.png"
+            />
+            <div id="description3" class="descriptions"></div>
+            <div id="temprature3" class="tempratures">
+              20
+              <div id="min-temp3" class="min-temps"></div>
+              <div id="max-temp3" class="max-temps"></div>
+            </div>
+            <div id="date3" calss="dates"></div>
+          </div>
+          <div id="day-weather4" class="day-weathers">
+            <img
+              id="image4"
+              class="images"
+              src="https://www.weatherbit.io/static/img/icons/r01d.png"
+            />
+            <div id="description4" class="descriptions"></div>
+            <div id="temprature4" class="tempratures">
+              20
+              <div id="min-temp4" class="min-temps"></div>
+              <div id="max-temp4" class="max-temps"></div>
+            </div>
+            <div id="date4" calss="dates"></div>
+          </div>
+          <div id="day-weather5" class="day-weathers">
+            <img
+              id="image5"
+              class="images"
+              src="https://www.weatherbit.io/static/img/icons/r01d.png"
+            />
+            <div id="description5" class="descriptions"></div>
+            <div id="temprature5" class="tempratures">
+              20
+              <div id="min-temp5" class="min-temps"></div>
+              <div id="max-temp5" class="max-temps"></div>
+            </div>
+            <div id="date5" calss="dates"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // Check that service workers are supported
+    if ("serviceWorker" in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/service-worker.js");
+      });
+    }
+  </script>
+</html>

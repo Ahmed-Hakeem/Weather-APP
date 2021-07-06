@@ -1,0 +1,324 @@
+// @import "./style.scss";
+/* data output style */
+@mixin iconContainer {
+  width: 45%;
+  height: 100%;
+}
+@mixin arrows {
+  visibility: hidden;
+  position: absolute;
+  top: 52vh;
+  width: 4vw;
+  height: 7vh;
+  cursor: pointer;
+  display: block;
+}
+@mixin absolute($left, $right, $top) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  left: $left;
+}
+
+$responsive-width: 80vw;
+@mixin borders {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px 10px 10px 10px;
+}
+//////////////////////////////////////////
+
+#alldata {
+  height: 80vh;
+}
+#image {
+  visibility: hidden;
+  position: absolute;
+
+  width: 50vw;
+  height: 80vh;
+  left: 45vw;
+  background-color: white;
+  border: 1px solid gray;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px 10px 10px 10px;
+  top: 10vh !important;
+  #countryImg {
+    width: 100%;
+    height: 100%;
+  }
+}
+#data {
+  visibility: hidden;
+  position: absolute;
+  top: -30vh;
+  width: 50vw;
+  height: 23vh;
+  left: 45vw;
+  background-color: white;
+  border: 1px solid gray;
+  color: gray;
+  border-radius: 1vh;
+  display: flex;
+  align-items: center;
+  background-color: #bc8b57ec;
+  color: white;
+  #dataGroup {
+    width: 30%;
+    height: 100%;
+  }
+  #weatherGroup {
+    width: 60%;
+    margin-right: 7%;
+    height: 100%;
+    display: flex;
+
+    #temp {
+      @include iconContainer;
+      padding-top: 10%;
+      font-size: 13vh;
+      &:after {
+        content: "\00b0 C";
+        font-size: 13vh;
+      }
+    }
+    #iconContainer {
+      @include iconContainer;
+      #apiIcon {
+        width: 100%;
+        height: 70%;
+      }
+      #description {
+        width: 100%;
+        height: 25%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.displayData {
+  visibility: visible !important;
+}
+.catch {
+  top: 10vh !important;
+}
+
+#dataGroup {
+  padding-top: 5%;
+  .align {
+    width: 100%;
+    height: 17%;
+    font-size: 14px;
+    display: flex;
+    justify-content: start;
+    .icons {
+      width: 15%;
+      height: 90%;
+      margin-right: 5%;
+    }
+    #flight {
+      font-size: 2vh;
+    }
+    #location {
+      font-size: 14px !important;
+    }
+
+    #date,
+    #location,
+    #population,
+    #content {
+      display: inline-block;
+      width: 80%;
+      vertical-align: middle;
+      font-size: 2vh;
+    }
+  }
+}
+
+#left-arrow {
+  left: 45vw;
+  @include arrows;
+}
+#right-arrow {
+  left: 90vw;
+  @include arrows;
+}
+#weather-forecast {
+  visibility: hidden;
+  position: absolute;
+  top: 68vh;
+  width: 49vw;
+  height: 20vh;
+  left: 45vw;
+
+  display: flex;
+  justify-content: space-around;
+  font-size: 40%;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(100, 100, 0, 0.2);
+  .images {
+    height: 40%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .descriptions {
+    height: 30%;
+
+    font-size: 16px;
+  }
+  .tempratures {
+    position: relative;
+    height: 20%;
+    font-size: 29px;
+    .min-temps {
+      position: absolute;
+      bottom: -5px;
+      left: 3px;
+      font-size: 11px;
+    }
+    .max-temps {
+      position: absolute;
+      top: -10px;
+      right: 8px;
+      font-size: 16px;
+    }
+  }
+  .dates {
+    height: 30%;
+    padding: 10%;
+  }
+}
+
+// make a cool spinner
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+.spin {
+  display: block;
+
+  visibility: visible;
+  position: absolute;
+  top: 50vh;
+  left: 68vw;
+}
+.spin::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #cfd0d1;
+  border-bottom-color: rgba(78, 180, 205, 0.7);
+  border-radius: 50%;
+  content: "";
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
+.spinHide {
+  display: block;
+  visibility: hidden;
+}
+.spinDelete {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  #spinner {
+    left: 47vw;
+    top: 60vh;
+  }
+
+  #data {
+    @include absolute(10vw, 10vw, 48vh);
+    height: 31vh;
+    z-index: -10;
+    flex-flow: row wrap;
+    width: $responsive-width;
+    #dataGroup,
+    #weatherGroup {
+      width: 40%;
+      height: 80%;
+      position: absolute;
+      top: 5%;
+    }
+    #weatherGroup {
+      #iconContainer,
+      #temp {
+        width: 41%;
+        height: 100%;
+        position: absolute;
+      }
+      #iconContainer {
+        left: 3vw;
+      }
+      #temp,
+      #tempContainer,
+      #temp:after {
+        left: 15vw;
+        top: 2vh;
+        font-size: 9vw !important;
+      }
+    }
+    #dataGroup {
+      left: 59%;
+      padding-top: 0px;
+      .align {
+        width: 100%;
+        height: 20%;
+        font-size: 14px;
+        display: flex;
+        justify-content: start;
+        .icons {
+          width: 11%;
+          height: 90%;
+          margin-right: 5%;
+          margin-left: 12%;
+        }
+      }
+    }
+  }
+  #temp,
+  #temp:after {
+    font-size: 16vh;
+    padding-left: 17%;
+  }
+  .displayData {
+    visibility: visible !important;
+    top: 56vh !important;
+  }
+
+  #image {
+    top: 56vh !important;
+    left: 10vw;
+    right: 5vw;
+    position: absolute;
+    width: $responsive-width;
+    z-index: -100;
+    height: 100vh;
+  }
+  #left-arrow,
+  #right-arrow {
+    top: 110vh !important;
+    width: 7vw;
+  }
+  #left-arrow {
+    left: 10vw;
+  }
+  #right-arrow {
+    left: 83vw;
+  }
+  #weather-forecast {
+    top: 130vh !important;
+    left: 10vw;
+    width: 78vw;
+    height: 28.5%;
+  }
+}
